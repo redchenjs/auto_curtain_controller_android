@@ -1,6 +1,5 @@
 local.properties
 build
-*.iml
 .gradle
 .idea/libraries
 .idea/workspace.xml
