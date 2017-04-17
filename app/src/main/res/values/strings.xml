@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">MSP430 Auto Curtain Controller</string>
-    <string name="warning">Warning</string>
-    <string name="no_bluetooth">no bluetooth</string>
-    <string name="bluetooth_not_ready">bluetooth not ready</string>
+    <string name="alert_dialog_tittle">Warning</string>
+    <string name="bluetooth_not_support">bluetooth not support</string>
+    <string name="bluetooth_not_enabled">bluetooth not enabled</string>
+    <string name="bluetooth_not_connected">bluetooth not connected</string>
     <string name="bluetooth_get_handle_error">bluetooth get handle error</string>
     <string name="bluetooth_send_error">bluetooth send error</string>
-    <string name="none_paired">none paired</string>
-    <string name="empty_name">empty name</string>
-    <string name="textViewOnline">Online</string>
+    <string name="textViewConnected">Connected</string>
     <string name="textViewConnecting">Connecting</string>
-    <string name="textViewOffline">Offline</string>
+    <string name="textViewDisconnected">Disconnected</string>
     <string name="toggleButtonStatusOn">ON</string>
     <string name="toggleButtonStatusOff">OFF</string>
     <string name="editTextLuxDefault" translatable="false">100</string>

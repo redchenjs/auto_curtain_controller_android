@@ -72,6 +72,7 @@ public class MainActivity extends Activity {
                 else {
                     btWriteData("set pos 100\n");
                 }
+                toggleButtonMode.setChecked(false);
             }
         });
 
@@ -95,17 +96,17 @@ public class MainActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Integer.valueOf(editTextLux.getText().toString()) > 65535) {
-                    editTextLux.setText("65535");
-                }
-                else if (Integer.valueOf(editTextLux.getText().toString()) < 0) {
-                    editTextLux.setText("0");
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 0 || Integer.valueOf(s.toString()) < 0) {
+                    editTextLux.setText("0");
+                }
+                else if (Integer.valueOf(s.toString()) > 65535) {
+                    editTextLux.setText("65535");
+                }
             }
         });
 
@@ -117,16 +118,17 @@ public class MainActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Integer.valueOf(editTextPos.getText().toString()) > 100) {
-                    editTextPos.setText("100");
-                }
-                else if (Integer.valueOf(editTextPos.getText().toString()) < 0) {
-                    editTextPos.setText("0");
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.length() == 0 || Integer.valueOf(s.toString()) < 0) {
+                    editTextPos.setText("0");
+                }
+                else if (Integer.valueOf(s.toString()) > 100) {
+                    editTextPos.setText("100");
+                }
                 seekBar.setProgress(Integer.valueOf(editTextPos.getText().toString()));
             }
         });
@@ -136,6 +138,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String lux = editTextLux.getText().toString();
                 btWriteData("set lux " + lux + "\n");
+                toggleButtonMode.setChecked(false);
             }
         });
 
@@ -144,6 +147,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String pos = editTextPos.getText().toString();
                 btWriteData("set pos " + pos + "\n");
+                toggleButtonMode.setChecked(false);
             }
         });
 
@@ -162,6 +166,7 @@ public class MainActivity extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 String prog = Integer.toString(seekBar.getProgress());
                 btWriteData("set pos " + prog + "\n");
+                toggleButtonMode.setChecked(false);
             }
         });
     }
@@ -185,13 +190,13 @@ public class MainActivity extends Activity {
                 if (btState == STATE_DISCONNECTED) {
                     if (btConnect() == STATE_CONNECTED) {
                         item.setTitle(R.string.menu_disconnect);
-                        textViewStatus.setText(R.string.textViewOnline);
+                        textViewStatus.setText(R.string.textViewConnected);
                     }
                 }
                 else if (btState == STATE_CONNECTED) {
                     if (btDisconnect() == STATE_DISCONNECTED) {
                         item.setTitle(R.string.menu_connect);
-                        textViewStatus.setText(R.string.textViewOffline);
+                        textViewStatus.setText(R.string.textViewDisconnected);
                     }
                 }
                 break;
@@ -203,7 +208,7 @@ public class MainActivity extends Activity {
 
     public void showAlertDialog(String message) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle(getString(R.string.warning));
+        alertDialogBuilder.setTitle(getString(R.string.alert_dialog_tittle));
         alertDialogBuilder.setMessage(message);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -212,13 +217,11 @@ public class MainActivity extends Activity {
     public int btConnect() {
 
         if (!btAdapter.isEnabled()) {
-            final String bluetooth_not_ready = getString(R.string.bluetooth_not_ready);
-            showAlertDialog(bluetooth_not_ready);
+            showAlertDialog(getString(R.string.bluetooth_not_enabled));
             return STATE_DISCONNECTED;
         }
         if (btAdapter == null) {
-            final String no_bluetooth = getString(R.string.no_bluetooth);
-            showAlertDialog(no_bluetooth);
+            showAlertDialog(getString(R.string.bluetooth_not_support));
             return STATE_DISCONNECTED;
         }
 
@@ -256,6 +259,9 @@ public class MainActivity extends Activity {
             } catch (IOException e) {
                 showAlertDialog(getString(R.string.bluetooth_send_error));
             }
+        }
+        else {
+            showAlertDialog(getString(R.string.bluetooth_not_connected));
         }
     }
 
