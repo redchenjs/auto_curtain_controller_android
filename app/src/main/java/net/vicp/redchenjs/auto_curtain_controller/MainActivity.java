@@ -5,15 +5,12 @@ import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -25,7 +22,6 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 public class MainActivity extends Activity {
-
     TextView textViewStatus = null;
     ToggleButton toggleButtonStatus = null;
     ToggleButton toggleButtonMode   = null;
@@ -33,15 +29,15 @@ public class MainActivity extends Activity {
     EditText editTextPos = null;
     Button buttonLux = null;
     Button buttonPos = null;
-    SeekBar seekBar = null;
+    SeekBar seekBar  = null;
 
     public static final int STATE_DISCONNECTED = 0;
     public static final int STATE_CONNECTING   = 1;
     public static final int STATE_CONNECTED    = 2;
 
     BluetoothAdapter btAdapter = null;
-    BluetoothDevice btDevice  = null;
-    BluetoothSocket btSocket  = null;
+    BluetoothDevice  btDevice  = null;
+    BluetoothSocket  btSocket  = null;
     int btState = STATE_DISCONNECTED;
     OutputStream outStream = null;
     String btAddress = "20:16:11:21:11:02";
@@ -214,7 +210,6 @@ public class MainActivity extends Activity {
     }
 
     public int btConnect() {
-
         if (!btAdapter.isEnabled()) {
             showAlertDialog(getString(R.string.bluetooth_not_enabled));
             return STATE_DISCONNECTED;
