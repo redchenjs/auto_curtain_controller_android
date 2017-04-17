@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MSP430 自动窗帘控制器</string>
+    <string name="buttonLux">设置光照阈值</string>
+    <string name="textViewOffline">未连接</string>
+    <string name="textViewOnline">已连接</string>
+    <string name="toggleButtonModeAuto">自动模式</string>
+    <string name="toggleButtonModeManual">手动模式</string>
+    <string name="toggleButtonStatusOff">关</string>
+    <string name="toggleButtonStatusOn">开</string>
+    <string name="buttonPos">设置窗帘位置</string>
+    <string name="menu_connect">连接设备</string>
+    <string name="menu_disconnect">断开连接</string>
+    <string name="bluetooth_not_ready">蓝牙当前不可用</string>
+    <string name="no_bluetooth">设备不支持蓝牙功能</string>
+    <string name="warning">警告</string>
+    <string name="textViewPaired">已配对设备</string>
+    <string name="none_paired">无已配对的设备</string>
+    <string name="empty_name">空</string>
+    <string name="textViewConnecting">正在连接</string>
+    <string name="bluetooth_get_handle_error">获取句柄失败</string>
+    <string name="bluetooth_send_error">发送失败</string>
+</resources>
