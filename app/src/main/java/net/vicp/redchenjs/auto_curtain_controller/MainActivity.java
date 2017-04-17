@@ -138,7 +138,6 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String lux = editTextLux.getText().toString();
                 btWriteData("set lux " + lux + "\n");
-                toggleButtonMode.setChecked(false);
             }
         });
 
